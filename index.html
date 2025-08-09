@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Paulo's Plazza Menu</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Google Fonts for elegant vintage style -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'), url('https://cdn.pixabay.com/photo/2014/11/30/14/11/parchment-551991_1280.jpg');
-      background-size: cover;
-      background-repeat: repeat;
-      background-attachment: fixed;
-      background-position: center;
+    html, body {
+      height: 100%;
+      margin: 0;
       font-family: 'Cormorant Garamond', serif;
       color: #4B2E2E;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* FULL-SCREEN INTRO OVERLAY (covers everything) */
+    #introSection {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f3e2c7;
+      background-image: url('https://cdn.pixabay.com/photo/2014/11/30/14/11/parchment-551991_1280.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 99999;
+      transition: transform 0.85s cubic-bezier(.2,.9,.2,1);
+      will-change: transform;
+    }
+    #introSection.hidden {
+      transform: translateY(-110%);
+    }
+
+    /* Menu below overlay */
+    #menuSection {
+      position: relative;
+      z-index: 1;
     }
 
     .menu-card {
-      background: rgba(255, 248, 220, 0.95); /* light parchment color */
+      background: rgba(255, 248, 220, 0.95);
       border-radius: 20px;
       padding: 2rem;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
       border: 2px solid #a1866f;
     }
 
@@ -31,7 +56,7 @@
       font-weight: 600;
       font-size: 3rem;
       color: #8B0000;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
 
     .italian-flag-bar {
@@ -54,93 +79,147 @@
       border-top: 2px dotted #8B4513;
     }
 
-    /* Italian flag button styling */
     .italian-btn {
       background: linear-gradient(to right, green, white, red);
       color: #4B2E2E;
       font-weight: bold;
       border: 2px solid #a1866f;
-      padding: 0.5rem 1.5rem;
+      padding: 0.75rem 2rem;
       border-radius: 8px;
       transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+      font-size: 1.25rem;
+      cursor: pointer;
     }
-
     .italian-btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      box-shadow: 0 0 10px rgba(0,0,0,0.25);
       color: #8B0000;
+    }
+
+    @media (max-width: 576px) {
+      .brand-title { font-size: 2rem; }
+      .italian-btn { font-size: 1rem; padding: 0.5rem 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Italian flag color bar -->
-  <div class="italian-flag-bar"></div>
-
-  <!-- Header -->
-  <div class="container text-center my-5">
-    <h1 class="brand-title">Paulo's Plazza</h1>
-    <p class="lead fst-italic">Authentic Italian Dining Experience</p>
+  <!-- Intro overlay -->
+  <div id="introSection" role="dialog" aria-modal="true" aria-label="Open menu">
+    <button id="viewMenuBtn" class="italian-btn" aria-controls="menuSection">🍝 View Menu</button>
   </div>
 
-  <!-- Menu -->
-  <div class="container mb-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="menu-card text-center">
-          <h2 class="mb-4">Menu</h2>
+  <!-- Main menu content -->
+  <main id="menuSection" aria-hidden="true">
+    <div class="italian-flag-bar"></div>
 
-          <h4 class="text-decoration-underline">Starter</h4>
-          <p class="dish-title">Antipasto - Selection of Cured Meats</p>
-          <p>A handpicked assortment of prosciutto, salami, and chorizo, served with artisanal bread.</p>
+    <div class="container text-center my-5">
+      <h1 class="brand-title">Paulo's Plazza</h1>
+      <p class="lead fst-italic">Authentic Italian Dining Experience</p>
+    </div>
 
-          <hr>
+    <div class="container mb-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="menu-card text-center">
+            <h2 class="mb-4">Menu</h2>
 
-          <h4 class="text-decoration-underline">Main Course</h4>
-          <p class="dish-title">Pork Milanese</p>
-          <p>Thinly breaded and pan-fried pork chop, golden and crispy, served with a lemon wedge and creamy pasta.</p>
+            <h4 class="text-decoration-underline">Starter</h4>
+            <p class="dish-title">Antipasto - Selection of Cured Meats</p>
+            <p>A handpicked assortment of prosciutto, salami, and chorizo, served with artisanal bread.</p>
 
-          <!-- Show Desserts Button -->
-          <button id="showDessertsBtn" class="italian-btn mt-3">View Desserts</button>
+            <hr>
 
-          <hr>
+            <h4 class="text-decoration-underline">Main Course</h4>
+            <p class="dish-title">Pork Milanese</p>
+            <p>Thinly breaded and pan-fried pork chop, golden and crispy, served with a lemon wedge and creamy pasta.</p>
 
-          <!-- Dessert Section (hidden by default) -->
-          <div id="dessertsSection" style="display: none;">
-            <h4 class="text-decoration-underline">Dessert</h4>
-            <p class="dish-title">La scelta è tua!<span style="font-size: small;"> (The choice is yours!)</span></p>
+            <button id="showDessertsBtn" class="italian-btn mt-3">View Desserts</button>
 
-            <p class="dish-title">Tiramisù</p>
-            <p>A traditional Italian dessert, light sponge, coffee, hide-a-horse sauce...and alcohol!</p>
+            <hr>
 
-            <p class="dish-title">Ghiaccioli alla frutta Rowntree's</p>
-            <p>A familiar ice lolly.... maybe the name gives it away!</p>
+            <div id="dessertsSection" style="display: none;">
+              <h4 class="text-decoration-underline">Dessert</h4>
+              <p class="dish-title">La scelta è tua! <span style="font-size: small;">(The choice is yours!)</span></p>
 
-            <p class="dish-title">Dulce de leche</p>
-            <p>Perhaps a favourite, thick, creamy, caramel like flavours...what isn't to love?!</p>
+              <p class="dish-title">Tiramisù</p>
+              <p>A traditional Italian dessert, light sponge, coffee, hide-a-horse sauce...and alcohol!</p>
+
+              <p class="dish-title">Ghiaccioli alla frutta Rowntree's</p>
+              <p>A familiar ice lolly.... maybe the name gives it away!</p>
+
+              <p class="dish-title">Dulce de leche</p>
+              <p>Perhaps a favourite, thick, creamy, caramel like flavours...what isn't to love?!</p>
+            </div>
+
           </div>
-
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <footer class="text-center py-4" style="background-color: rgba(0, 0, 0, 0.7); color: white;">
-    © 2025 Paulo's Plazza | Buon Appetito!
-  </footer>
+    <footer class="text-center py-4" style="background-color: rgba(0,0,0,0.7); color: white;">
+      © 2025 Paulo's Plazza | Buon Appetito!
+    </footer>
+  </main>
 
   <script>
-    document.getElementById('showDessertsBtn').addEventListener('click', function () {
-      const desserts = document.getElementById('dessertsSection');
-      if (desserts.style.display === 'none') {
-        desserts.style.display = 'block';
-        this.textContent = 'Hide Desserts';
-      } else {
-        desserts.style.display = 'none';
-        this.textContent = 'View Desserts';
+    (function () {
+      const intro = document.getElementById('introSection');
+      const viewBtn = document.getElementById('viewMenuBtn');
+      const menu = document.getElementById('menuSection');
+      const dessertsBtn = document.getElementById('showDessertsBtn');
+
+      // Initially disable page scrolling
+      document.body.style.overflow = 'hidden';
+
+      viewBtn.addEventListener('click', () => {
+        intro.classList.add('hidden');
+
+        const TRANSITION_MS = 900;
+        setTimeout(() => {
+          intro.style.display = 'none';
+          document.body.style.overflow = ''; // Restore scrolling
+          menu.setAttribute('aria-hidden', 'false');
+          smoothScrollToTop(2000); // scroll slower (2 seconds)
+        }, TRANSITION_MS);
+      });
+
+      dessertsBtn.addEventListener('click', function () {
+        const desserts = document.getElementById('dessertsSection');
+        if (!desserts) return;
+        if (desserts.style.display === 'none' || desserts.style.display === '') {
+          desserts.style.display = 'block';
+          this.textContent = 'Hide Desserts';
+        } else {
+          desserts.style.display = 'none';
+          this.textContent = 'View Desserts';
+        }
+      });
+
+      // Custom smooth scroll to top with easing
+      function smoothScrollToTop(duration = 10000) {
+        const start = window.pageYOffset;
+        const startTime = performance.now();
+
+        function scrollStep(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // easeInOutCubic easing function
+          const easeInOutCubic = progress < 0.5
+            ? 4 * progress * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+          window.scrollTo(0, start * (1 - easeInOutCubic));
+
+          if (elapsed < duration) {
+            requestAnimationFrame(scrollStep);
+          }
+        }
+
+        requestAnimationFrame(scrollStep);
       }
-    });
+    })();
   </script>
 
 </body>
