@@ -105,9 +105,15 @@
 <body>
 
   <!-- Intro overlay -->
-  <div id="introSection" role="dialog" aria-modal="true" aria-label="Open menu">
+   
+ <!-- Inside your #introSection -->
+<div id="introSection" role="dialog" aria-modal="true" aria-label="Open menu" style="text-align: center; padding-top: 50px;">
+  <div class="logo-container" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+    <img style="width: 25%;" src="Plogo.png" alt="Logo" />
     <button id="viewMenuBtn" class="italian-btn" aria-controls="menuSection">🍝 View Menu</button>
   </div>
+</div>
+  
 
   <!-- Main menu content -->
   <main id="menuSection" aria-hidden="true">
@@ -126,7 +132,7 @@
 
             <h4 class="text-decoration-underline">Starter</h4>
             <p class="dish-title">Antipasto - Selection of Cured Meats</p>
-            <p>A handpicked assortment of prosciutto, salami, and chorizo, served with artisanal bread.</p>
+            <p>A handpicked assortment of prosciutto, salami, and chorizo. A light snakc to get you started!</p>
 
             <hr>
 
@@ -180,7 +186,7 @@
           intro.style.display = 'none';
           document.body.style.overflow = ''; // Restore scrolling
           menu.setAttribute('aria-hidden', 'false');
-          smoothScrollToTop(2000); // scroll slower (2 seconds)
+          smoothScrollToTop(4000); // scroll slower (4 seconds)
         }, TRANSITION_MS);
       });
 
@@ -197,7 +203,7 @@
       });
 
       // Custom smooth scroll to top with easing
-      function smoothScrollToTop(duration = 10000) {
+      function smoothScrollToTop(duration = 1500) {
         const start = window.pageYOffset;
         const startTime = performance.now();
 
