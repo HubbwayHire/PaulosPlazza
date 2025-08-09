@@ -82,6 +82,27 @@
           <h4 class="text-decoration-underline">Main Course</h4>
           <p class="dish-title">Pork Milanese</p>
           <p>Thinly breaded and pan-fried pork chop, golden and crispy, served with a lemon wedge and creamy pasta.</p>
+
+          <!-- Show Desserts Button -->
+          <button id="showDessertsBtn" class="btn btn-danger mt-3">View Desserts</button>
+
+          <hr>
+
+          <!-- Dessert Section (hidden by default) -->
+          <div id="dessertsSection" style="display: none;">
+            <h4 class="text-decoration-underline">Dessert</h4>
+            <p class="dish-title">La scelta è tua!<span style="font-size: small;"> (The choice is yours!)</span></p>
+
+            <p class="dish-title">Tiramisù</p>
+            <p>A traditional Italian dessert, light sponge, coffee, hide-a-horse sauce...and alcohol!</p>
+
+            <p class="dish-title">Ghiaccioli alla frutta Rowntree's</p>
+            <p>A familiar ice lolly.... maybe the name gives it away!</p>
+
+            <p class="dish-title">Dulce de leche</p>
+            <p>Perhaps a favourite, thick, creamy, caramel like flavours...what isn't to love?!</p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -91,6 +112,19 @@
   <footer class="text-center py-4" style="background-color: rgba(0, 0, 0, 0.7); color: white;">
     © 2025 Paulo's Plazza | Buon Appetito!
   </footer>
+
+  <script>
+    document.getElementById('showDessertsBtn').addEventListener('click', function () {
+      const desserts = document.getElementById('dessertsSection');
+      if (desserts.style.display === 'none') {
+        desserts.style.display = 'block';
+        this.textContent = 'Hide Desserts';
+      } else {
+        desserts.style.display = 'none';
+        this.textContent = 'View Desserts';
+      }
+    });
+  </script>
 
 </body>
 </html>
