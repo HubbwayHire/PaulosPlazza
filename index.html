@@ -53,6 +53,23 @@
     hr {
       border-top: 2px dotted #8B4513;
     }
+
+    /* Italian flag button styling */
+    .italian-btn {
+      background: linear-gradient(to right, green, white, red);
+      color: #4B2E2E;
+      font-weight: bold;
+      border: 2px solid #a1866f;
+      padding: 0.5rem 1.5rem;
+      border-radius: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    }
+
+    .italian-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      color: #8B0000;
+    }
   </style>
 </head>
 <body>
@@ -84,7 +101,7 @@
           <p>Thinly breaded and pan-fried pork chop, golden and crispy, served with a lemon wedge and creamy pasta.</p>
 
           <!-- Show Desserts Button -->
-          <button id="showDessertsBtn" class="btn btn-danger mt-3">View Desserts</button>
+          <button id="showDessertsBtn" class="italian-btn mt-3">View Desserts</button>
 
           <hr>
 
